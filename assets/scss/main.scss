@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./reset.scss";
+@import "./font.scss";
+@import "./responsive.scss";
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  background: url("/imgs/bg.jpg") top center no-repeat fixed;
+  background-size: cover;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  z-index: -1;
+}
+
+@include mediaMobileTo640 {
+  body {
+    background: url("/imgs/bg-mobile.jpg") top center no-repeat fixed;
+    background-size: contain;
+    background-color: #000;
+  }
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-dialog-custom {
+  .el-dialog__header {
+    display: none !important;
+  }
+  .el-dialog {
+    border-radius: 10px;
+    padding: 20px 15px;
+    background: linear-gradient(
+      180deg,
+      #7d5105 0,
+      #382303 15%,
+      #140c02 40%,
+      #1c1202 70%,
+      #261901 100%
+    );
+    border: 2px solid #c3ad61;
+  }
+
+  .icon-close-full-dialog {
+    position: absolute;
+    bottom: 104%;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
