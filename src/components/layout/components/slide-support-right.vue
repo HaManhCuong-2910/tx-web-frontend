@@ -17,9 +17,10 @@
       <img src="/imgs/icon-phone.png" alt="Liên hệ Hotline Hitclub" />
     </a>
     <a
-      class="icon-phone lg:!hidden mt-2"
+      class="icon-phone lg:!hidden mt-2 cursor-pointer"
       aria-label="Chat với Hitclub"
       title="Chat với Hitclub"
+      @click="onShowChat"
     >
       <img src="/imgs/icon-chat.png" alt="Chat với Hitclub" />
     </a>
@@ -58,7 +59,8 @@
   </div>
 
   <a
-    class="btn-livechat lg:block hidden"
+    class="btn-livechat lg:block hidden cursor-pointer"
+    @click="onShowChat"
     aria-label="Chat với Hitclub"
     title="Chat với Hitclub"
   >
@@ -66,7 +68,12 @@
   </a>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const onShowChat = () => {
+  // @ts-ignore
+  LC_API.open_chat_window();
+};
+</script>
 
 <style scoped lang="scss">
 @import "~/assets/scss/responsive.scss";
