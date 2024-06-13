@@ -36,3 +36,8 @@ export const listMetaTagDefault = [
     content: "telephone=no, date=no, address=no, email=no",
   },
 ];
+
+export interface IChooseOption {
+  label: string;
+  value: string | number;
+}

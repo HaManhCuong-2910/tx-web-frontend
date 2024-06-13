@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.9",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "autoprefixer": "^10.4.16",
     "element-plus": "^2.7.3",
     "nuxt-simple-robots": "^4.0.0-rc.16",
@@ -21,6 +22,7 @@
     "tailwindcss": "^3.3.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
@@ -29,6 +31,7 @@
     "@vee-validate/nuxt": "^4.12.4",
     "@vee-validate/yup": "^4.12.4",
     "nuxt": "^3.11.2",
+    "pinia": "^2.1.7",
     "vee-validate": "^4.12.4",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",

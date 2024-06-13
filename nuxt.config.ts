@@ -42,6 +42,8 @@ export default defineNuxtConfig({
     modules: "src/modules",
   },
   modules: [
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     "@vee-validate/nuxt",
     "nuxt-simple-robots",
     "vue3-carousel-nuxt",

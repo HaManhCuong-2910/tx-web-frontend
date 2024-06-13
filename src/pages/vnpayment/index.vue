@@ -1,5 +1,7 @@
 <template>
-  <div class="container mx-auto pt-12">dsada</div>
+  <div class="container mx-auto pt-12">
+    <payment-screen />
+  </div>
 </template>
 
 <script setup lang="ts">
