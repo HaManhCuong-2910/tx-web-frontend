@@ -7,6 +7,7 @@
           class="container-bank-img"
           v-for="item in listDataBank"
           :key="item.value"
+          @click="paymentStore.dataChoose.bank = item.value as string"
         >
           <img
             :src="item.label"
