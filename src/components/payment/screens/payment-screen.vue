@@ -1,11 +1,16 @@
 <template>
   <div class="custom-payment">
     <header-payment-component />
-    <main-payment-component />
+    <main-payment-component v-if="step === 1" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { usePaymentStore } from "../stores/payment.store";
+
+const paymentStore = usePaymentStore();
+const { step } = storeToRefs(paymentStore);
+</script>
 
 <style scoped lang="scss">
 .custom-payment {

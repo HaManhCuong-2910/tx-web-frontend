@@ -157,7 +157,20 @@ export const usePaymentStore = defineStore("paymentStore", () => {
     },
   ]);
 
+  const dataChoose = ref({
+    bank: "",
+  });
+
+  const step = ref(1);
+
+  const onChangeStep = (value: number) => {
+    step.value = value;
+  };
+
   return {
     listDataBank,
+    dataChoose,
+    step,
+    onChangeStep,
   };
 });
