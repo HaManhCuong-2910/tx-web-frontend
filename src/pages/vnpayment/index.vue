@@ -1,10 +1,17 @@
 <template>
-  <div class="container mx-auto pt-12">
+  <div
+    class="container mx-auto lg:pt-12"
+    :style="step === 1 ? 'max-width: 708px;' : 'max-width: 980px;'"
+  >
     <payment-screen />
   </div>
 </template>
 
 <script setup lang="ts">
+import { usePaymentStore } from "~/src/components/payment/stores/payment.store";
+
+const paymentStore = usePaymentStore();
+const { step } = storeToRefs(paymentStore);
 definePageMeta({
   layout: "payment",
 });
@@ -12,9 +19,6 @@ definePageMeta({
 
 <style scoped lang="scss">
 @import "~/assets/scss/responsive.scss";
-.container {
-  max-width: 708px;
-}
 
 @include mediaMobileTo640 {
   .container {

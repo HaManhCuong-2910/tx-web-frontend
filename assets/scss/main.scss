@@ -46,3 +46,39 @@ img {
     cursor: pointer;
   }
 }
+
+.button-common {
+  &-primary {
+    background-color: #0071a9 !important;
+    p {
+      color: #fff !important;
+    }
+    &:focus {
+      background-color: #0071a9 !important;
+      p {
+        color: #fff !important;
+      }
+    }
+    &:active,
+    &:hover {
+      background-color: #0071a9 !important;
+    }
+  }
+
+  &-secondary {
+    background-color: #f5f7f9 !important;
+    p {
+      color: #000 !important;
+    }
+    &:focus {
+      background-color: #f5f7f9 !important;
+      p {
+        color: #000 !important;
+      }
+    }
+    &:active,
+    &:hover {
+      background-color: #f5f7f9 !important;
+    }
+  }
+}

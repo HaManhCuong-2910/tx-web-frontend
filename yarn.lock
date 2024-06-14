@@ -697,9 +697,9 @@
     "@iconify/types" "*"
 
 "@iconify-json/ri@^1.1.20":
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/@iconify-json/ri/-/ri-1.1.20.tgz#6621dfc91fa119c1b941a0685d213f22480157ca"
-  integrity sha512-yScIGjLFBCJKWKskQTWRjNI2Awoq+VRDkRxEsCQvSfdz41n+xkRtFG2K6J1OVI90ClRHfjFC8VJ2+WzxxyFjTQ==
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/@iconify-json/ri/-/ri-1.1.21.tgz#16882230c827c29538d7ff4fd502930698cfb32d"
+  integrity sha512-ssU2CRaB4T83Q3cncCZtITholhYkH6gEL5XLmdMII6Xzn8bTCpDCkt+HdX4URc24uUMD0PGIaNLJUIAgdfLMjQ==
   dependencies:
     "@iconify/types" "*"
 
@@ -711,9 +711,9 @@
     "@iconify/types" "*"
 
 "@iconify/collections@^1.0.406":
-  version "1.0.430"
-  resolved "https://registry.yarnpkg.com/@iconify/collections/-/collections-1.0.430.tgz#1e0e25e4af6df6e823999683ae7169ccda1934d5"
-  integrity sha512-8yA2M1jKf+XCXclxsBAjI8FtnxpX6gkLhmLy00xRft1Sn0Tr7ht9exFhM86A6dfM+9517sMuFN91kdmZxLs7tg==
+  version "1.0.431"
+  resolved "https://registry.yarnpkg.com/@iconify/collections/-/collections-1.0.431.tgz#f101436688a1582112ee7e7795ec5d171b6fa398"
+  integrity sha512-uA8Nm6ph5iyYGEAWiP2dYnJ/BH/nx+geqC7U+rHhMwuw0CDzk1X+Z3dwKBLoib2CZajrNDHgt2J8lEo29h91Hg==
   dependencies:
     "@iconify/types" "*"
 
@@ -4349,6 +4349,11 @@ make-fetch-happen@^13.0.0, make-fetch-happen@^13.0.1:
     proc-log "^4.2.0"
     promise-retry "^2.0.1"
     ssri "^10.0.0"
+
+maska@^2.1.11:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/maska/-/maska-2.1.11.tgz#71ef39a0c7121beda374f9a309bded5c129dd3f1"
+  integrity sha512-IGqWjBnKxMYcVa06pb4mPfag9sJjnR2T15CdGfQ2llR3gajiSd4AxXCvNqHMEq9W3UBhjjTazgWumsP3sWrUSg==
 
 mdn-data@2.0.28:
   version "2.0.28"

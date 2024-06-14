@@ -5,22 +5,15 @@
         <label
           :for="props.id"
           v-if="props.label"
-          :class="[props.required && 'required', 'text-style fs-14']"
+          :class="[props.required && 'required', ' text-sm']"
         >
           {{ props.label }}</label
         >
-        <lazy-tooltip-component
-          class="ml-[16px]"
-          :iconTooltip="props.iconTooltip"
-          v-if="props.tooltip"
-        >
-          <p class="text-style colorWhite" v-html="props.tooltip"></p>
-        </lazy-tooltip-component>
       </div>
       <el-input
         ref="inputRef"
         :class="[
-          'input-common text-style',
+          'input-common ',
           slots.append && 'input-common-append',
           props.class,
           (errorMessage && meta.touched) || props.isError ? 'is-error' : '',
@@ -36,6 +29,8 @@
         :inputMode="props.type === 'number' ? 'numeric' : inputMode"
         :pattern="props.type === 'number' ? '[0-9]*' : props.pattern"
         :autocomplete="props.autocomplete"
+        :formatter="onFormat"
+        :parser="onParser"
         @input="onInput"
         @focus="onFocus"
         @blur="onBlur"
@@ -54,18 +49,24 @@
     <VErrorMessage
       v-if="meta.touched"
       :name="props.name"
-      :class="'error-message text-style colorBrandR700'"
+      :class="'error-message text-sm text-red-500'"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { Mask } from "maska";
+import {
+  type TYPE_TRANSFORM_INPUT,
+  onTransformValueType,
+} from "~/src/services/constant";
 const slots = useSlots();
 
 const inputRef = ref();
 const isShowClear = ref(false);
 const props = defineProps({
   isError: Boolean,
+  typeTransform: Number as PropType<TYPE_TRANSFORM_INPUT>,
   pattern: String,
   inputMode: String,
   id: {
@@ -104,6 +105,8 @@ const props = defineProps({
   formatSuffix: String,
 });
 
+const maskObject = new Mask(props.mask);
+
 const { meta, errorMessage, setTouched, setValue, validate } = useField(
   props.name,
   undefined,
@@ -118,6 +121,10 @@ const onInput = async (value: string) => {
   let valueCustom: string | number = value;
   if (props.type === "number") {
     valueCustom = valueCustom.replace(/\D+/g, "");
+  }
+
+  if (props.typeTransform) {
+    valueCustom = onTransformValueType(props.typeTransform, valueCustom);
   }
 
   if (valueCustom) {
@@ -145,6 +152,20 @@ const onBlur = (evt: FocusEvent) => {
   emit("onBlur", evt);
 };
 
+const onFormat = (value: string) => {
+  if (props.mask) {
+    return maskObject.masked(value);
+  }
+  return value;
+};
+
+const onParser = (value: string) => {
+  if (props.mask) {
+    return maskObject.unmasked(value);
+  }
+  return value;
+};
+
 defineExpose({ focus });
 </script>
 
@@ -159,12 +180,13 @@ defineExpose({ focus });
 
   .el-input__wrapper {
     box-shadow: unset;
-    border: 1px solid #e8e8e8;
-    border-radius: 12px;
-    padding: 6px 16px;
+    border: 1px solid #bfccd9;
+    padding: 2px 12px;
 
     .el-input__inner {
-      &::-ms-input-placeholder {
+      font-size: 14px;
+      line-height: 20px;
+      w &::-ms-input-placeholder {
         transform: translateY(1px);
       }
 
@@ -179,8 +201,8 @@ defineExpose({ focus });
     }
 
     &.is-focus {
-      border: 1px solid #4d9578;
-      box-shadow: 0px 0px 0px 1px #bdd7cc;
+      border: 1px solid #0071a9;
+      box-shadow: unset;
     }
   }
 

@@ -1,13 +1,26 @@
 <template>
   <div class="container-main-payment py-6 px-4">
     <div class="bg-white p-4">
-      <el-input v-model="input" class="w-full" placeholder="Tìm kiếm" />
-      <div class="grid grid-cols-4 gap-2 mt-4">
+      <h3 class="text-xl">Chọn ngân hàng thanh toán</h3>
+      <input-common1
+        class-container="mt-4"
+        :value="input"
+        required
+        :id="`name`"
+        :name="'name'"
+        :placeholder="'Tìm kiếm'"
+        @update:value="onUpdateValue"
+      >
+        <template #prefix>
+          <img src="/imgs/24x24-search.svg" />
+        </template>
+      </input-common1>
+      <div class="grid lg:grid-cols-4 grid-cols-3 gap-2 mt-4">
         <div
           class="container-bank-img"
-          v-for="item in listDataBank"
+          v-for="item in cloneListDataBank"
           :key="item.value"
-          @click="paymentStore.dataChoose.bank = item.value as string"
+          @click="handleChoose(item.value as string)"
         >
           <img
             :src="item.label"
@@ -21,11 +34,40 @@
 </template>
 
 <script setup lang="ts">
+import type { IChooseOption } from "~/src/services/constant";
 import { usePaymentStore } from "../stores/payment.store";
-
+import { useLoadingStore } from "../../shared/stores/loading.store";
+const loadingStore = useLoadingStore();
 const paymentStore = usePaymentStore();
 const { listDataBank } = storeToRefs(paymentStore);
 const input = ref("");
+const cloneListDataBank = ref<IChooseOption[]>([]);
+
+const onUpdateValue = (value: string) => {
+  input.value = value;
+
+  if (!input.value) {
+    cloneListDataBank.value = JSON.parse(JSON.stringify(listDataBank.value));
+  }
+
+  cloneListDataBank.value = listDataBank.value.filter((item) =>
+    (item.value as string).includes(input.value)
+  );
+};
+
+const handleChoose = (value: string) => {
+  loadingStore.onSetIsLoading(true);
+
+  setTimeout(() => {
+    paymentStore.dataChoose.bank = value;
+    paymentStore.onChangeStep(2);
+    loadingStore.onSetIsLoading(false);
+  }, 2000);
+};
+
+onBeforeMount(() => {
+  cloneListDataBank.value = JSON.parse(JSON.stringify(listDataBank.value));
+});
 </script>
 
 <style scoped lang="scss">

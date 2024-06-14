@@ -2,6 +2,8 @@
   <div class="custom-payment">
     <header-payment-component />
     <main-payment-component v-if="step === 1" />
+    <form-payment-component v-if="step === 2" />
+    <footer-payment-component />
   </div>
 </template>
 

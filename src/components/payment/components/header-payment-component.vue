@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full header-box-simple flex justify-between px-6 py-4 bg-white">
+  <div
+    class="w-full header-box-simple flex justify-between px-6 py-4 bg-white lg:static sticky top-0 z-50"
+  >
     <img
       src="/imgs/logo.svg"
       class="max-h-8 object-contain max-w-36"
