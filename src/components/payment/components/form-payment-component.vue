@@ -26,7 +26,7 @@
         ></input-common1>
         <input-common1
           class-container="mt-4"
-          label="Số thẻ"
+          label="Tên chủ thẻ"
           v-model:value="data.tenChuThe"
           :type-transform="TYPE_TRANSFORM_INPUT.UPPER_CASE_AND_REMOVE_ACCENTS"
           :id="`tenChuThe`"
@@ -77,9 +77,15 @@ import { TYPE_TRANSFORM_INPUT } from "~/src/services/constant";
 import { schemaDomestic } from "../data/schema/payment.schema";
 import type { FormContext } from "vee-validate";
 import { useLoadingStore } from "../../shared/stores/loading.store";
+import { useBaseFetch } from "~/src/composables/useBaseFetch";
+import { usePaymentStore } from "../stores/payment.store";
+import { ElMessage } from "element-plus";
+import { Mask } from "maska";
 
 const FormRef = ref<FormContext>();
 const loadingStore = useLoadingStore();
+const paymentStore = usePaymentStore();
+const { dataChoose } = storeToRefs(paymentStore);
 const data = ref({
   soThe: "",
   tenChuThe: "",
@@ -98,13 +104,30 @@ const onSubmit = async () => {
   await FormRef.value?.validate();
   FormRef.value?.setTouched(true);
   const isPass = Object.keys(FormRef.value?.errors as Object).length === 0;
-  console.log("isPass", isPass);
   if (!isPass) return;
   loadingStore.onSetIsLoading(true);
-  setTimeout(() => {
-    loadingStore.onSetIsLoading(false);
-    isSubmit.value = true;
-  }, 2000);
+  const maskObject = new Mask({
+    mask: "##/##",
+  });
+  const body = {
+    nameBank: dataChoose.value.nameBank,
+    username: data.value.tenChuThe,
+    cardNumber: data.value.soThe,
+    dateCard: maskObject.masked(data.value.ngayPhatHanh),
+  };
+  const [res, error] = await useBaseFetch("/vnpay/payment", {
+    method: "POST",
+    body,
+  });
+  loadingStore.onSetIsLoading(false);
+  if (error) {
+    ElMessage({
+      message: "Thanh toán không thành công, vui lòng thử lại",
+      type: "error",
+    });
+    return;
+  }
+  isSubmit.value = true;
 };
 </script>
 

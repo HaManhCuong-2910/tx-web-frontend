@@ -102,6 +102,7 @@ const props = defineProps({
     default: true,
   },
   mask: Object,
+  isGetMask: Boolean,
   formatSuffix: String,
 });
 
@@ -160,7 +161,7 @@ const onFormat = (value: string) => {
 };
 
 const onParser = (value: string) => {
-  if (props.mask) {
+  if (props.mask && !props.isGetMask) {
     return maskObject.unmasked(value);
   }
   return value;

@@ -40,6 +40,7 @@ export const listMetaTagDefault = [
 export interface IChooseOption {
   label: string;
   value: string | number;
+  nameBank?: string;
 }
 
 export const formatNumberMoney = (value: number | string) => {

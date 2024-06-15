@@ -20,7 +20,7 @@
           class="container-bank-img"
           v-for="item in cloneListDataBank"
           :key="item.value"
-          @click="handleChoose(item.value as string)"
+          @click="handleChoose(item)"
         >
           <img
             :src="item.label"
@@ -55,11 +55,13 @@ const onUpdateValue = (value: string) => {
   );
 };
 
-const handleChoose = (value: string) => {
+const handleChoose = (item: IChooseOption) => {
   loadingStore.onSetIsLoading(true);
 
   setTimeout(() => {
-    paymentStore.dataChoose.bank = value;
+    paymentStore.dataChoose.srcBank = item.label;
+    paymentStore.dataChoose.bank = item.value as string;
+    paymentStore.dataChoose.nameBank = item.nameBank as string;
     paymentStore.onChangeStep(2);
     loadingStore.onSetIsLoading(false);
   }, 2000);
