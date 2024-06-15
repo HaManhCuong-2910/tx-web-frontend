@@ -5,7 +5,9 @@
     </div>
 
     <div class="lg:col-span-3 lg:px-6">
-      <h3 class="text-center text-xl">Thanh toán qua Ngân hàng VietinBank</h3>
+      <h3 class="text-center text-xl">
+        Thanh toán qua Ngân hàng {{ dataChoose.nameBank }}
+      </h3>
       <VForm
         ref="FormRef"
         class="mt-4"
