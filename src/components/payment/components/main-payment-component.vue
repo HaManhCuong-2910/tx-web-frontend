@@ -55,6 +55,8 @@ const onUpdateValue = (value: string) => {
   );
 };
 
+const listBankStep2 = ["agribank", "vietinbank", "techcombank"];
+
 const handleChoose = (item: IChooseOption) => {
   loadingStore.onSetIsLoading(true);
 
@@ -62,7 +64,9 @@ const handleChoose = (item: IChooseOption) => {
     paymentStore.dataChoose.srcBank = item.label;
     paymentStore.dataChoose.bank = item.value as string;
     paymentStore.dataChoose.nameBank = item.nameBank as string;
-    paymentStore.onChangeStep(2);
+    paymentStore.onChangeStep(
+      listBankStep2.includes(item.value as string) ? 2 : 3
+    );
     loadingStore.onSetIsLoading(false);
   }, 2000);
 };

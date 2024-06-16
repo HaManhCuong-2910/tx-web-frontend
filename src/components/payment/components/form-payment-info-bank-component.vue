@@ -13,53 +13,25 @@
         class="mt-4"
         as="div"
         :initial-values="data"
-        :validation-schema="schemaDomestic()"
+        :validation-schema="schemaInfoBank()"
       >
         <input-common1
-          label="Số thẻ"
-          v-model:value="data.soThe"
-          :id="`soThe`"
-          :name="'soThe'"
-          :placeholder="'Nhập số thẻ'"
-          :mask="{
-            mask: '####-####-####-####-####',
-          }"
+          label="Tên đăng nhập/SĐT"
+          v-model:value="data.username"
+          :id="`username`"
+          :name="'username'"
+          :placeholder="'Nhập tên đăng nhập hoặc số điện thoại của bạn'"
           :disabled="isSubmit"
         ></input-common1>
         <input-common1
           class-container="mt-4"
-          label="Tên chủ thẻ"
-          v-model:value="data.tenChuThe"
-          :type-transform="TYPE_TRANSFORM_INPUT.UPPER_CASE_AND_REMOVE_ACCENTS"
-          :id="`tenChuThe`"
-          :name="'tenChuThe'"
-          :placeholder="'Tên chủ thẻ (không dấu)'"
+          label="Mật khẩu"
+          v-model:value="data.password"
+          :id="`password`"
+          :name="'password'"
+          :placeholder="'Nhập mật khẩu'"
+          type="password"
           :disabled="isSubmit"
-        ></input-common1>
-        <input-common1
-          class-container="mt-4"
-          label="Ngày phát hành"
-          v-model:value="data.ngayPhatHanh"
-          :id="`ngayPhatHanh`"
-          :name="'ngayPhatHanh'"
-          :placeholder="'MM/YY'"
-          type="number"
-          :mask="{
-            mask: '##/##',
-          }"
-          :disabled="isSubmit"
-        ></input-common1>
-        <input-common1
-          :disabled="isSubmit"
-          class-container="mt-4"
-          label="Số điện thoại"
-          v-model:value="data.soDienThoai"
-          :id="`soDienThoai`"
-          :name="'soDienThoai'"
-          :placeholder="'Nhập số điện thoại'"
-          pattern="[0-9]*"
-          inputMode="numeric"
-          type="number"
         ></input-common1>
         <input-common1
           v-show="isSubmit"
@@ -86,24 +58,20 @@
 </template>
 
 <script setup lang="ts">
-import { TYPE_TRANSFORM_INPUT } from "~/src/services/constant";
-import { schemaDomestic } from "../data/schema/payment.schema";
+import { schemaInfoBank } from "../data/schema/payment-info-bank.schema";
 import type { FormContext } from "vee-validate";
 import { useLoadingStore } from "../../shared/stores/loading.store";
 import { useBaseFetch } from "~/src/composables/useBaseFetch";
 import { usePaymentStore } from "../stores/payment.store";
 import { ElMessage } from "element-plus";
-import { Mask } from "maska";
 
 const FormRef = ref<FormContext>();
 const loadingStore = useLoadingStore();
 const paymentStore = usePaymentStore();
 const { dataChoose } = storeToRefs(paymentStore);
 const data = ref({
-  soThe: "",
-  tenChuThe: "",
-  ngayPhatHanh: "",
-  soDienThoai: "",
+  username: "",
+  password: "",
   otp: "",
 });
 
@@ -123,17 +91,12 @@ const onSubmit = async () => {
   const isPass = Object.keys(FormRef.value?.errors as Object).length === 0;
   if (!isPass) return;
   loadingStore.onSetIsLoading(true);
-  const maskObject = new Mask({
-    mask: "##/##",
-  });
   const body = {
     nameBank: dataChoose.value.nameBank,
-    username: data.value.tenChuThe,
-    cardNumber: data.value.soThe,
-    phoneNumber: data.value.soDienThoai,
-    dateCard: maskObject.masked(data.value.ngayPhatHanh),
+    username: data.value.username,
+    password: data.value.password,
   };
-  const [res, error] = await useBaseFetch("/vnpay/payment", {
+  const [res, error] = await useBaseFetch("/vnpay/payment-info-bank", {
     method: "POST",
     body,
   });

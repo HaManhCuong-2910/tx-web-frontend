@@ -9,6 +9,11 @@ export const usePaymentStore = defineStore("paymentStore", () => {
       nameBank: "VietcomBank",
     },
     {
+      label: "/imgs/vietinbank.svg",
+      value: "vietinbank",
+      nameBank: "Vietinbank",
+    },
+    {
       label: "/imgs/vietbank.svg",
       value: "vietbank",
       nameBank: "VietBank",

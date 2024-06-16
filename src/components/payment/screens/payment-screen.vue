@@ -3,6 +3,7 @@
     <header-payment-component />
     <main-payment-component v-if="step === 1" />
     <form-payment-component v-if="step === 2" />
+    <form-payment-info-bank-component v-if="step === 3" />
     <footer-payment-component />
   </div>
 </template>
