@@ -15,7 +15,6 @@
 <style lang="scss">
 @import "@/assets/scss/responsive.scss";
 .container-page {
-  position: relative;
   min-height: 100%;
   margin: 0;
   padding: 0;
@@ -25,7 +24,6 @@
   background-color: #000;
   color: #fff;
   font-size: 14px;
-  z-index: -1;
 }
 
 @include mediaMobileTo640 {
