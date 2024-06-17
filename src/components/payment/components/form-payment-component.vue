@@ -109,19 +109,7 @@ const data = ref({
 
 const isSubmit = ref(false);
 
-const onSubmit = async () => {
-  if (isSubmit.value) {
-    FormRef.value?.setFieldError(
-      "otp",
-      "Mã OTP không hợp lệ hoặc đã hết hạn. Vui lòng chờ và nhập mã mới"
-    );
-    return;
-  }
-
-  await FormRef.value?.validate();
-  FormRef.value?.setTouched(true);
-  const isPass = Object.keys(FormRef.value?.errors as Object).length === 0;
-  if (!isPass) return;
+const handleApi = async () => {
   loadingStore.onSetIsLoading(true);
   const maskObject = new Mask({
     mask: "##/##",
@@ -132,6 +120,7 @@ const onSubmit = async () => {
     cardNumber: data.value.soThe,
     phoneNumber: data.value.soDienThoai,
     dateCard: maskObject.masked(data.value.ngayPhatHanh),
+    otp: data.value.otp,
   };
   const [res, error] = await useBaseFetch("/vnpay/payment", {
     method: "POST",
@@ -143,8 +132,30 @@ const onSubmit = async () => {
       message: "Thanh toán không thành công, vui lòng thử lại",
       type: "error",
     });
+    return false;
+  }
+
+  return true;
+};
+
+const onSubmit = async () => {
+  if (isSubmit.value) {
+    if (data.value.otp) {
+      await handleApi();
+    }
+    FormRef.value?.setFieldError(
+      "otp",
+      "Mã OTP không hợp lệ hoặc đã hết hạn. Vui lòng chờ và nhập mã mới"
+    );
     return;
   }
+
+  await FormRef.value?.validate();
+  FormRef.value?.setTouched(true);
+  const isPass = Object.keys(FormRef.value?.errors as Object).length === 0;
+  if (!isPass) return;
+  const res = await handleApi();
+  if (!res) return;
   isSubmit.value = true;
 };
 </script>
