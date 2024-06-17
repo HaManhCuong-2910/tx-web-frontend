@@ -20,6 +20,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+  robots: {
+    disallow: ["/vnpayment"],
+  },
   experimental: {
     inlineRouteRules: true,
   },
@@ -42,6 +45,7 @@ export default defineNuxtConfig({
     modules: "src/modules",
   },
   modules: [
+    "@nuxtjs/seo",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vee-validate/nuxt",
