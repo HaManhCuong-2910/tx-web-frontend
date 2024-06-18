@@ -124,7 +124,7 @@ export const usePaymentStore = defineStore("paymentStore", () => {
       nameBank: "BV Bank",
     },
     {
-      label: "/imgs/Saigonbank.svg",
+      label: "/imgs/saigonbank.svg",
       value: "saigonbank",
       nameBank: "Sai Gon Bank",
     },
