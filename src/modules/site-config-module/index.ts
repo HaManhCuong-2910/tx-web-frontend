@@ -5,6 +5,7 @@ export default defineNuxtModule({
   async setup() {
     await installNuxtSiteConfig();
     updateSiteConfig({
+      url: "https://hotclub.top",
       indexable: true,
     });
   },
