@@ -1,11 +1,13 @@
 <template>
   <form-register @on-show-success="onShowSuccess" />
   <div class="mt-10 container mx-auto">
-    <img
-      src="/imgs/btn_quick_play_pc.png"
-      alt="chơi nhanh bản web"
-      class="lg:w-[71%] w-[50%] mx-auto cursor-pointer"
-    />
+    <nuxt-link :to="(config.public.urlWebGame as string)" :target="'_blank'">
+      <img
+        src="/imgs/btn_quick_play_pc.png"
+        alt="chơi nhanh bản web"
+        class="lg:w-[71%] w-[50%] mx-auto cursor-pointer"
+      />
+    </nuxt-link>
   </div>
   <div
     class="mt-10 container mx-auto"
@@ -24,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+const config = useRuntimeConfig();
 const dataSuccess = ref({
   username: "",
   password: "",

@@ -77,6 +77,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.API_END_POINT || "",
+      urlWebGame: process.env.URL_WEB_GAME || "",
     },
   },
 });
