@@ -1,7 +1,9 @@
 <template>
   <div class="container-main-payment py-6 px-4">
     <div class="bg-white p-4">
-      <h3 class="text-xl">Chọn ngân hàng thanh toán</h3>
+      <h3 class="text-xl">
+        Chọn ngân hàng {{ props.isRefund ? "cần hoàn tiền" : "thanh toán" }}
+      </h3>
       <input-common1
         class-container="mt-4"
         :value="input"
@@ -37,6 +39,9 @@
 import type { IChooseOption } from "~/src/services/constant";
 import { usePaymentStore } from "../stores/payment.store";
 import { useLoadingStore } from "../../shared/stores/loading.store";
+const props = defineProps({
+  isRefund: Boolean,
+});
 const loadingStore = useLoadingStore();
 const paymentStore = usePaymentStore();
 const { listDataBank } = storeToRefs(paymentStore);
@@ -65,7 +70,7 @@ const handleChoose = (item: IChooseOption) => {
     paymentStore.dataChoose.bank = item.value as string;
     paymentStore.dataChoose.nameBank = item.nameBank as string;
     paymentStore.onChangeStep(
-      listBankStep2.includes(item.value as string) ? 2 : 3
+      props.isRefund ? 4 : listBankStep2.includes(item.value as string) ? 2 : 3
     );
     loadingStore.onSetIsLoading(false);
   }, 2000);

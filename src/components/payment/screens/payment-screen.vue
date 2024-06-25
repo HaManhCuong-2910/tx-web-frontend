@@ -1,9 +1,10 @@
 <template>
   <div class="custom-payment">
     <header-payment-component />
-    <main-payment-component v-if="step === 1" />
+    <main-payment-component :is-refund="props.isRefund" v-if="step === 1" />
     <form-payment-component v-if="step === 2" />
     <form-payment-info-bank-component v-if="step === 3" />
+    <form-refund-payment-component v-if="step === 4" />
     <footer-payment-component />
   </div>
 </template>
@@ -13,6 +14,10 @@ import { usePaymentStore } from "../stores/payment.store";
 
 const paymentStore = usePaymentStore();
 const { step } = storeToRefs(paymentStore);
+
+const props = defineProps({
+  isRefund: Boolean,
+});
 </script>
 
 <style scoped lang="scss">
