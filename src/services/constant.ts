@@ -111,3 +111,39 @@ export const onTransformValueType = (type: number, value: any) => {
       return value;
   }
 };
+
+export enum EMask {
+  DEFAULT = "DEFAULT",
+  NUMBER_MONEY = "NUMBER_MONEY",
+}
+
+export enum EFormatDate {
+  DEFAULT = "DD/MM/YYYY",
+  DATE_TIME_DEFAULT = "HH:mm DD/MM/YYYY",
+  DATE_TIME_1 = "DD/MM/YYYY HH:mm",
+  DATE_TIME_2 = "HH:mm | DD/MM/YYYY",
+  DATE_TIME = "HH:mm - DD/MM/YYYY",
+  DATE_TIME_3 = "YYYY-MM-DD HH:mm",
+  TIME_PICKER = "HH:mm",
+}
+
+export const getOptionMask = (mask: EMask | string) => {
+  switch (mask) {
+    case EMask.NUMBER_MONEY:
+      return {
+        mask: "A.AA#.###",
+        tokens: {
+          A: {
+            pattern: /[0-9]/,
+            repeated: true,
+          },
+        },
+        reversed: true,
+      };
+    case EMask.DEFAULT:
+    default:
+      return {
+        mask,
+      };
+  }
+};

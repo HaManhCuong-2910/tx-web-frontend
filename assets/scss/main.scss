@@ -82,3 +82,17 @@ img {
     }
   }
 }
+
+.cell-date-time-picker-container {
+  .el-date-table-cell__text {
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+  }
+}
+
+.input-date-time-picker-popper {
+  .el-input__wrapper {
+    // pointer-events: none;
+  }
+}
