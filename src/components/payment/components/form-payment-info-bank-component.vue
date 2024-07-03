@@ -6,7 +6,8 @@
 
     <div class="lg:col-span-3 lg:px-6">
       <h3 class="text-center text-xl">
-        Thanh toán qua Ngân hàng {{ dataChoose.nameBank }}
+        {{ props.isRefund ? "Xác nhận hoàn tiền" : "Thanh toán" }} qua Ngân hàng
+        {{ dataChoose.nameBank }}
       </h3>
       <VForm
         ref="FormRef"
@@ -50,7 +51,13 @@
         <button-common
           @click="onSubmit"
           :class="'w-full mt-6'"
-          text="Tiếp tục"
+          :text="
+            props.isRefund
+              ? isSubmit
+                ? 'Hoàn tất thủ tục hoàn tiền'
+                : 'Tiếp tục'
+              : 'Tiếp tục'
+          "
         ></button-common>
       </VForm>
     </div>
