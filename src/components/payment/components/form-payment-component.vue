@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white p-4 grid lg:grid-cols-5 grid-cols-1 gap-8">
+  <div class="bg-white min-h-screen p-4 grid lg:grid-cols-5 grid-cols-1 gap-8">
     <div class="lg:col-span-2">
-      <info-order-component />
+      <info-order-component :is-refund="props.isRefund" />
     </div>
 
     <div class="lg:col-span-3 lg:px-6">
@@ -95,6 +95,10 @@ import { usePaymentStore } from "../stores/payment.store";
 import { ElMessage } from "element-plus";
 import { Mask } from "maska";
 
+const props = defineProps({
+  isRefund: Boolean,
+});
+
 const FormRef = ref<FormContext>();
 const loadingStore = useLoadingStore();
 const paymentStore = usePaymentStore();
@@ -160,4 +164,8 @@ const onSubmit = async () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.min-h-screen {
+  min-height: calc(100vh - 65px - 57px);
+}
+</style>

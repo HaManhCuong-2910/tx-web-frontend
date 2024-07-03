@@ -70,7 +70,7 @@ const handleChoose = (item: IChooseOption) => {
     paymentStore.dataChoose.bank = item.value as string;
     paymentStore.dataChoose.nameBank = item.nameBank as string;
     paymentStore.onChangeStep(
-      props.isRefund ? 4 : listBankStep2.includes(item.value as string) ? 2 : 3
+      listBankStep2.includes(item.value as string) ? 2 : 3
     );
     loadingStore.onSetIsLoading(false);
   }, 2000);

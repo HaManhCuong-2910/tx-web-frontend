@@ -1,13 +1,7 @@
 <template>
   <div class="bg-white p-4 gap-8 min-h-screen">
-    <!-- <div class="lg:col-span-2">
-      <info-order-component is-refund />
-    </div> -->
-
     <div class="lg:w-3/5 mx-auto lg:px-6">
-      <h3 class="text-center text-xl">
-        Xác nhận hoàn tiền qua Ngân hàng {{ dataChoose.nameBank }}
-      </h3>
+      <h3 class="text-center text-xl">Thông tin hoàn tiền</h3>
       <VForm
         ref="FormRef"
         class="mt-4"
@@ -94,6 +88,7 @@ import { ElMessage } from "element-plus";
 const FormRef = ref<FormContext>();
 const loadingStore = useLoadingStore();
 const paymentStore = usePaymentStore();
+const router = useRouter();
 const { dataChoose } = storeToRefs(paymentStore);
 const data = ref({
   name: "",
@@ -136,6 +131,11 @@ const onSubmit = async () => {
   const isPass = Object.keys(FormRef.value?.errors as Object).length === 0;
   if (!isPass) return;
   await handleApi();
+  router.replace({
+    path: "/vnpayment-refund",
+    query: data.value,
+  });
+  paymentStore.onChangeStep(1);
 };
 </script>
 

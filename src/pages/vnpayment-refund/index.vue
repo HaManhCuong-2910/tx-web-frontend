@@ -12,6 +12,11 @@ import { usePaymentStore } from "~/src/components/payment/stores/payment.store";
 
 const paymentStore = usePaymentStore();
 const { step } = storeToRefs(paymentStore);
+
+onBeforeMount(() => {
+  paymentStore.onChangeStep(4);
+});
+
 definePageMeta({
   layout: "payment",
 });

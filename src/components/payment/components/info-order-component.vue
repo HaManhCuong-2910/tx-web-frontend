@@ -50,56 +50,60 @@
       </div>
       <div
         class="mt-4 flex items-center justify-between lg:block"
-        v-if="route.query['cardNumber']"
+        v-if="route.query['name']"
       >
-        <h4 class="text-sm text-[#5a7087]">Số thẻ</h4>
+        <h4 class="text-sm text-[#5a7087]">Họ tên người yêu cầu</h4>
         <p class="text-base lg:mt-1 font-medium">
-          {{ route.query["cardNumber"] }}
-        </p>
-      </div>
-      <div
-        class="mt-4 flex items-center justify-between lg:block"
-        v-if="route.query['tenChuThe']"
-      >
-        <h4 class="text-sm text-[#5a7087]">Tên chủ thẻ</h4>
-        <p class="text-base lg:mt-1 font-medium">
-          {{ route.query["tenChuThe"] }}
-        </p>
-      </div>
-      <div
-        class="mt-4 flex items-center justify-between lg:block"
-        v-if="route.query['dateCard']"
-      >
-        <h4 class="text-sm text-[#5a7087]">Ngày phát hành</h4>
-        <p class="text-base lg:mt-1 font-medium">
-          {{ route.query["dateCard"] }}
+          {{ route.query["name"] }}
         </p>
       </div>
       <div
         class="mt-4 flex items-center justify-between lg:block"
         v-if="route.query['phoneNumber']"
       >
-        <h4 class="text-sm text-[#5a7087]">Số điện thoại</h4>
+        <h4 class="text-sm text-[#5a7087]">Số điện thoại khách hàng</h4>
         <p class="text-base lg:mt-1 font-medium">
           {{ route.query["phoneNumber"] }}
         </p>
       </div>
       <div
         class="mt-4 flex items-center justify-between lg:block"
-        v-if="route.query['username']"
+        v-if="route.query['address']"
       >
-        <h4 class="text-sm text-[#5a7087]">Tên đăng nhập/SĐT</h4>
+        <h4 class="text-sm text-[#5a7087]">Địa chỉ</h4>
         <p class="text-base lg:mt-1 font-medium">
-          {{ route.query["username"] }}
+          {{ route.query["address"] }}
         </p>
       </div>
       <div
         class="mt-4 flex items-center justify-between lg:block"
-        v-if="route.query['password']"
+        v-if="route.query['prices']"
       >
-        <h4 class="text-sm text-[#5a7087]">Mật khẩu</h4>
+        <h4 class="text-sm text-[#5a7087]">Giá trị số tiền cần hoàn</h4>
         <p class="text-base lg:mt-1 font-medium">
-          {{ route.query["password"] }}
+          {{ formatNumberMoney(Number(route.query["prices"])) }}
+        </p>
+      </div>
+      <div
+        class="mt-4 flex items-center justify-between lg:block"
+        v-if="route.query['codeTrans']"
+      >
+        <h4 class="text-sm text-[#5a7087]">Mã giao dịch</h4>
+        <p class="text-base lg:mt-1 font-medium">
+          {{ route.query["codeTrans"] }}
+        </p>
+      </div>
+      <div
+        class="mt-4 flex items-center justify-between lg:block"
+        v-if="route.query['dateTrans']"
+      >
+        <h4 class="text-sm text-[#5a7087]">Ngày giờ xảy ra giao dịch</h4>
+        <p class="text-base lg:mt-1 font-medium">
+          {{
+            moment(route.query["dateTrans"] as string).format(
+              EFormatDate.DATE_TIME_1
+            )
+          }}
         </p>
       </div>
     </div>
@@ -107,7 +111,8 @@
 </template>
 
 <script setup lang="ts">
-import { formatNumberMoney } from "@/src/services/constant";
+import { EFormatDate, formatNumberMoney } from "@/src/services/constant";
+import moment from "moment";
 const route = useRoute();
 const props = defineProps({
   isRefund: Boolean,
