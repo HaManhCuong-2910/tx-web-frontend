@@ -31,6 +31,50 @@
           />
         </div>
       </div>
+
+      <h3 class="text-xl mt-4">
+        {{ props.isRefund ? "Hoàn tiền qua" : "Thanh toán qua" }} Momo
+      </h3>
+      <div class="grid lg:grid-cols-4 grid-cols-3 gap-2 mt-4">
+        <div
+          class="container-bank-img"
+          @click="
+            handleChoose({
+              label: '/imgs/momo.png',
+              value: 'momo',
+              nameBank: 'Momo',
+            })
+          "
+        >
+          <img
+            :src="'/imgs/momo.png'"
+            class="object-contain w-full h-20 p-2"
+            alt="bank img"
+          />
+        </div>
+      </div>
+
+      <h3 class="text-xl mt-4">
+        {{ props.isRefund ? "Hoàn tiền qua" : "Thanh toán qua" }} Viettel Pay
+      </h3>
+      <div class="grid lg:grid-cols-4 grid-cols-3 gap-2 mt-4">
+        <div
+          class="container-bank-img"
+          @click="
+            handleChoose({
+              label: '/imgs/viettel_pay.png',
+              value: 'viettelpay',
+              nameBank: 'Viettel Pay',
+            })
+          "
+        >
+          <img
+            :src="'/imgs/viettel_pay.png'"
+            class="object-contain w-full h-20 p-2"
+            alt="bank img"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>

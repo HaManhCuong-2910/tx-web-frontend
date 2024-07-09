@@ -6,7 +6,13 @@
 
     <div class="lg:col-span-3 lg:px-6">
       <h3 class="text-center text-xl">
-        {{ props.isRefund ? "Xác nhận hoàn tiền" : "Thanh toán" }} qua Ngân hàng
+        {{ props.isRefund ? "Xác nhận hoàn tiền" : "Thanh toán" }} qua
+        {{
+          dataChoose.bank.includes("momo") ||
+          dataChoose.bank.includes("viettelpay")
+            ? "ví"
+            : "Ngân hàng"
+        }}
         {{ dataChoose.nameBank }}
       </h3>
       <VForm
