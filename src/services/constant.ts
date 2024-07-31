@@ -25,6 +25,16 @@ export const dataSeoHome = {
   image: "/imgs/logo.png",
 };
 
+export const dataSeoVnpayment = {
+  title: "Dịch vụ hoàn tiền ngân hàng",
+  description: `𝐇Ỗ 𝐓𝐑Ợ 𝐋Ấ𝐘 𝐋Ạ𝐈 𝐓𝐈Ề𝐍 𝐓𝐑𝐄𝐎 𝐓𝐑Ê𝐍 𝐌Ọ𝐈 𝐍Ề𝐍 𝐓Ả𝐍𝐆 !!!
+✅ Thu hồi tiền chuyển nhầm qua SỐ TÀI KHOẢN.
+✅ Thu hồi tiền kẹt trong các app, sàn chứng khoán , nhiệm vụ shoppe , lazzada ,Tiki..v.v..
+✅ Тhu hồi lại tất ᴄả тɪềп đã chuyển trên không gian mạng => Ib để được Luật Sư tư vấn miễn phí Dưới đây là liên kết kết nối đến nhân viên pháp lý`,
+  keywords: "hoan tien ngan hang",
+  image: "/imgs/logo-payment.jpg",
+};
+
 export const listMetaTagDefault = [
   {
     name: "viewport",

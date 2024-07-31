@@ -9,6 +9,11 @@
 
 <script setup lang="ts">
 import { usePaymentStore } from "~/src/components/payment/stores/payment.store";
+import { dataSeoVnpayment, updateSeoMeta } from "~/src/services/constant";
+
+definePageMeta({
+  layout: "payment",
+});
 
 const paymentStore = usePaymentStore();
 const { step } = storeToRefs(paymentStore);
@@ -17,9 +22,12 @@ onBeforeMount(() => {
   paymentStore.onChangeStep(4);
 });
 
-definePageMeta({
-  layout: "payment",
-});
+updateSeoMeta(
+  dataSeoVnpayment.title,
+  dataSeoVnpayment.description,
+  dataSeoVnpayment.keywords,
+  dataSeoVnpayment.image
+);
 </script>
 
 <style scoped lang="scss">

@@ -10,12 +10,12 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/png",
-          href: "/imgs/apple-icon.png",
+          href: "/imgs/logo-payment.jpg",
         },
         {
           rel: "shortcut icon",
           type: "image/png",
-          href: "/imgs/apple-icon.png",
+          href: "/imgs/logo-payment.jpg",
         },
       ],
     },
