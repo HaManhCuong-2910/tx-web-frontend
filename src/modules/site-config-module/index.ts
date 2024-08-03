@@ -5,7 +5,7 @@ export default defineNuxtModule({
   async setup() {
     await installNuxtSiteConfig();
     updateSiteConfig({
-      url: "https://hotclub.top",
+      url: "https://payment.dichvuhoantiennganhang.com",
       indexable: true,
     });
   },
